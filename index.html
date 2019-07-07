@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:locale" content="vi_VN">
+    <meta property="og:title" content="Nguyen Gia Bach">
+    <meta property="og:description" content="Comming Soon Website.">
+    <meta property="og:site_name" content="Nguyen Gia Bach">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thisismyloveforu1407.me/">
+    <meta property="og:image" content="https://i.imgur.com/25BeD1J.jpg">
+    <meta property="og:image:alt" content="Nguyen Gia Bach!">
+    <title>Nguyen Gia Bach</title>
+    <link
+        href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap&subset=latin-ext,vietnamese"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="heading">COMING SOON IN</h1>
+        <ul id="countdown">
+            <li><span id="days"></span>Ngày</li>
+            <li><span id="hours"></span>Giờ</li>
+            <li><span id="minutes"></span>Phút</li>
+            <li><span id="seconds"></span>Giây</li>
+        </ul>
+        <h1 id="hidden-content"></h1>
+    </div>
+    <script>
+        const second = 1000,
+            minute = second * 60,
+            hour = minute * 60,
+            day = hour * 24;
+        var countDown = new Date('July 14, 2019 00:00:00').getTime(); // Thay đổi thòi gian đếm ngược
+        var x = setInterval(function () {
+            let now = new Date().getTime(),
+                distance = countDown - now;
+            let dayText = Math.floor(distance / (day)) < 10 ? "0" + Math.floor(distance / (day)) : Math.floor(
+                distance / (day));
+            let hourText = Math.floor((distance % (day)) / (hour)) < 10 ? "0" + Math.floor((distance % (day)) /
+                (hour)) : Math.floor((distance % (day)) / (hour));
+            let minuteText = Math.floor((distance % (hour)) / (minute)) < 10 ? "0" + Math.floor((distance % (
+                hour)) / (minute)) : Math.floor((distance % (hour)) / (minute));
+            let secondText = Math.floor((distance % (minute)) / second) < 10 ? "0" + Math.floor((distance % (
+                minute)) / second) : Math.floor((distance % (minute)) / second);
+            document.querySelector('#days').innerText = dayText;
+            document.querySelector('#hours').innerText = hourText;
+            document.querySelector('#minutes').innerText = minuteText;
+            document.querySelector('#seconds').innerText = secondText;
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.querySelector('#days').innerText = '00';
+                document.querySelector('#hours').innerText = '00';
+                document.querySelector('#minutes').innerText = '00';
+                document.querySelector('#seconds').innerText = '00';
+                document.querySelector('#heading').style.display = 'none';
+                //Nội dung hiển thị sau khi hết thời gian
+                document.querySelector('#hidden-content').innerText = 'Chúc mừng sinh nhật';
+            }
+        }, second)
+    </script>
+</body>
+
+</html>
